@@ -1,0 +1,5 @@
+timestamp: 1752808890747
+method: GET
+path: /v2/account
+body: (empty)
+pre-sign string: 1752808890747GET/v2/account

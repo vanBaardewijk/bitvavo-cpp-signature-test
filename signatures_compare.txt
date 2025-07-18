@@ -1,0 +1,14 @@
+[Kraken Swift Test]
+Nonce: 1752717561646  
+Signature: kWJ7bMka9cc4g+SH5g3vsddlmrkY00klfsxCrlONnZDoxuPQn8oKYKLkWE2p7LpYLkKGJhFVww9e+exoA35Xlw==  
+HTTP Status: 200  
+Kraken Response:  
+{"error":[],"result":{"XXRP":"3.76569000","ZEUR":"0.0000"}}
+
+[Bitvavo Python]
+pre-sign string: 1752808890747GET/v2/account  
+signature: 35fad2ddd37c6c459410ee1e4e89a26e9f127f1ea791d189298fc0ede80c2643
+
+[Bitvavo C++]
+pre-sign string: 1752809910700GET/v2/account  
+signature: 6164706c251b02271c4f64f6540cd8d22110d7a0a8b04cd742104661417b7abf

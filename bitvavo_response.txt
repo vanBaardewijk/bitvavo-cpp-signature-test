@@ -1,0 +1,6 @@
+Timestamp: 1752809910700
+Message to sign: 1752809910700GET/v2/account
+Signature (Hex): 6164706c251b02271c4f64f6540cd8d22110d7a0a8b04cd742104661417b7abf
+HTTP status: 403
+Raw response:
+{"errorCode":309,"error":"The signature is invalid."}

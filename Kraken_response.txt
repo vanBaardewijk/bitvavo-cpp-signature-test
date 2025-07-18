@@ -1,0 +1,5 @@
+ Nonce: 1752717561646
+ Signature: kWJ7bMka9cc4g+SH5g3vsddlmrkY00klfsxCrlONnZDoxuPQn8oKYKLkWE2p7LpYLkKGJhFVww9e+exoA35Xlw==
+ HTTP Status: 200
+Kraken Response:
+{"error":[],"result":{"XXRP":"3.76569000","ZEUR":"0.0000”}}
