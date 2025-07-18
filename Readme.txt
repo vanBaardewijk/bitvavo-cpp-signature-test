@@ -1,26 +1,62 @@
 # Bitvavo C++ HMAC Signature Test
 
-This project demonstrates a signature mismatch issue when accessing the Bitvavo API using C++ HMAC signing. The same logic works in Python and with other exchanges like Kraken.
+This project demonstrates a **C++ HMAC SHA256 signature mismatch** when calling the Bitvavo API, despite identical signing logic working flawlessly in Python and on other exchanges like Kraken.
 
-## Included Files
+## Issue Summary
 
-- `cpp_signature_test.cpp` – C++ code that generates HMAC signature for Bitvavo
-- `python_signature_test.py` – Reference Python version with correct result
-- `pre_sign_reference.txt` – Raw string used for signing
-- `signatures_compare.txt` – Comparison of C++ vs Python results
-- `bitvavo_response.txt` – Bitvavo error response for invalid signature
-- `notes.md` – Investigation notes and technical analysis
+- C++ HMAC logic works perfectly on **Kraken**
+- Python HMAC logic works perfectly on **Bitvavo**
+- C++ HMAC logic **fails on Bitvavo**, despite generating the same base64 HMAC signature
 
-## Result Summary
-
--  Python signature accepted
--  C++ signature rejected (even when identical HMAC result)
--  Same C++ logic works on Kraken, implying Bitvavo-specific validation logic
+We strongly suspect Bitvavo's backend rejects the request based on subtle implementation or formatting differences — possibly involving newline characters, timestamps, or headers.
 
 ---
 
-### Can You Help?
+## 📁 Included Files
 
-We’re trying to identify what Bitvavo expects differently in their HMAC request handling.
+| File | Description |
+|------|-------------|
+| `cpp_signature_test.cpp` | C++ code that generates and submits a Bitvavo API request using HMAC |
+| `python_signature_test.py` | Working Python equivalent using `hmac` and `requests` |
+| `pre_sign_reference.txt` | Raw string used for signing (`timestamp + method + endpoint + body`) |
+| `signatures_compare.txt` | C++ vs Python signature output (base64) |
+| `bitvavo_response.txt` | Bitvavo's HTTP 401 response (`invalid signature`) |
+| `notes.md` | Summary of testing done, suspected issues, and cross-comparison with Kraken |
 
-If you spot something, feel free to open an issue or pull request.
+---
+
+## 🧪 Kraken Comparison
+
+To rule out general implementation bugs, we ran the same C++ signing logic on Kraken's API.
+
+- HMAC signatures **were accepted** by Kraken's backend using the same `crypto++` library
+- Bitvavo rejects these exact signatures, even when the `pre_sign` input is byte-for-byte identical
+
+---
+
+## Why This Matters
+
+Bitvavo has **no official C++ SDK**, and current C++ integrations are blocked due to this signature mismatch. This repo may help others debug or reverse-engineer what Bitvavo expects.
+
+---
+
+## Request for Help
+
+If you work at Bitvavo or have experience with:
+- Signature verification bugs
+- API header formatting issues
+- Known Bitvavo HMAC edge cases
+
+Please open an [issue](https://github.com/vanBaardewijk/bitvavo-cpp-signature-test/issues) or pull request.
+
+---
+
+## Related Threads
+
+Coming soon: links to GitHub Issues, Reddit threads, Bitvavo support tickets, or X (Twitter) posts.
+
+---
+
+## License
+
+MIT — share, fork, and contribute freely.
