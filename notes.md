@@ -48,3 +48,29 @@ We’re publishing this issue to help other C++ developers integrating with Bitv
 
 —
 Sascha
+
+---
+
+## 🔍 Update: Fixed Timestamp & Cross-Language Signature Verification (July 19, 2025)
+
+We generated a deterministic test using the fixed timestamp `1752892051047` and pre-sign string:
+
+## 📨 Support Interaction Summary
+
+- July 18: Reproducible issue submitted to Bitvavo support
+- July 19: Support from Bitvavo replied:  
+  _“Thanks for the information. I understand the frustration. Let me look into this further and see if there is anything wrong with our HMAC signature mechanisms.”_
+
+We’re awaiting a deeper technical response or escalation.
+
+---
+
+### Signature Results (all match):
+
+- **Python**: `c20086429974ff9ebce01805c7561ec9dfb4f1addc7ec367f3fa2e8a2f1f7411`
+- **C++ (OpenSSL)**: `c20086429974ff9ebce01805c7561ec9dfb4f1addc7ec367f3fa2e8a2f1f7411`
+- **curl (custom header injection)**: `c20086429974ff9ebce01805c7561ec9dfb4f1addc7ec367f3fa2e8a2f1f7411`
+
+### Bitvavo API Response:
+```json
+403 {"errorCode":309,"error":"The signature is invalid."}
